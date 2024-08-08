@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>minky.zone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var initialise = () => {
+            var prefersLightTheme = localStorage.getItem('prefersLightTheme') === 'true';
+            var usingLightTheme = prefersLightTheme || window.matchMedia('(prefers-color-scheme: light)').matches;
+
+            var applyDarkTheme = () => {
+                document.documentElement.style.setProperty('--background-color', 'var(--contrast-color-dark)');
+                document.documentElement.style.setProperty('--text-color', 'var(--contrast-color-light)');
+                document.documentElement.style.setProperty('--shadow-color', 'var(--contrast-color-transparent-light)');
+                usingLightTheme = false;
+                localStorage.setItem('prefersLightTheme', false);
+            };
+
+            var applyLightTheme = () => {
+                document.documentElement.style.setProperty('--background-color', 'var(--contrast-color-light)');
+                document.documentElement.style.setProperty('--text-color', 'var(--contrast-color-dark)');
+                document.documentElement.style.setProperty('--shadow-color', 'var(--contrast-color-transparent-dark)');
+                usingLightTheme = true;
+                localStorage.setItem('prefersLightTheme', true);
+            };
+
+            var onThemeToggled = () => {
+                usingLightTheme
+                    ? applyDarkTheme()
+                    : applyLightTheme();
+            };
+
+            var lightModeCheckbox = document.getElementById('light-mode-toggle');
+            var lightModeCheckboxLabel = lightModeCheckbox.parentElement;
+            lightModeCheckbox.checked = usingLightTheme;
+            lightModeCheckbox.addEventListener('change', onThemeToggled);
+            lightModeCheckboxLabel.removeAttribute('aria-hidden');
+            lightModeCheckboxLabel.classList.remove('hidden');
+
+            setTimeout(() => document.body.classList.add('initialised'));
+
+            if (!usingLightTheme) {
+                applyDarkTheme();
+                return;
+            }
+
+            applyLightTheme();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => initialise());
+    </script>
+    <style>
+        :root {
+            --contrast-color-dark: #221d26;
+            --contrast-color-light: #faf7fb;
+
+            --contrast-color-transparent-dark: rgba(34, 29, 38, 0.1);
+            --contrast-color-transparent-light: rgba(238, 233, 240, 0.1);
+
+            --palette-color-1: #809bce;
+            --palette-color-2: #95b8d1;
+            --palette-color-3: #b8e0d4;
+            --palette-color-4: #d6eadf;
+            --palette-color-5: #eac4d5;
+        }
+    </style>
+    <style>
+        :root {
+            --background-color: var(--contrast-color-dark);
+            --text-color: var(--contrast-color-light);
+            --shadow-color: var(--contrast-color-transparent-light);
+        }
+    </style>
+    <style>
+        @media (prefers-color-scheme: light) {
+            :root {
+                --background-color: var(--contrast-color-light);
+                --text-color: var(--contrast-color-dark);
+                --shadow-color: var(--contrast-color-transparent-dark);
+            }
+        }
+    </style>
+    <style>
+        @keyframes balloon-letter {
+            0% {
+                transform: rotate(-2deg) translate(-0.1vmin, -0.2vmin);
+            }
+
+            100% {
+                transform: rotate(2deg) translate(0.1vmin, 0.2vmin);
+            }
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            min-height: 100dvh;
+            font-family: 'Verdana', 'Helvetica', 'Arial', 'sans-serif';
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--background-color);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body.initialised {
+            transition: background-color 300ms, color 300ms;
+        }
+
+        header a {
+            text-decoration: none;
+        }
+
+        .light-mode-toggle {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+
+        .light-mode-toggle.hidden {
+            display: none;
+        }
+
+        .page-title {
+            margin: 0;
+            font-family: 'Noto Sans', 'Arial Bold', 'sans-serif';
+            font-weight: 900;
+            font-size: clamp(15vmin, 15vw, 200px);
+            background-color: var(--palette-color-5);
+            background-image:
+                radial-gradient(at 40% 60%, var(--palette-color-1) 0px, transparent 50%),
+                radial-gradient(at 36.0% 42.0%, var(--palette-color-2) 0px, transparent 50%),
+                radial-gradient(at 6.0% 15.0%, var(--palette-color-3) 0px, transparent 50%),
+                radial-gradient(at 70.0% 20.0%, var(--palette-color-4) 0px, transparent 50%);
+            color: transparent;
+            background-clip: text;
+            display: flex;
+            filter: drop-shadow(0 0 16px var(--shadow-color));
+            transition: filter 300ms;
+            padding: 16px;
+        }
+
+        .page-title > span {
+            display: inline-block;
+            animation: balloon-letter 7s ease-in-out infinite both alternate;
+        }
+
+        .page-title > span > span {
+            display: block;
+            transition: transform 500ms;
+            transition-timing-function: ease-out;
+        }
+
+        .page-title > span:hover > span {
+            transform: scale(1.1);
+        }
+
+        .page-title > span:nth-of-type(2) {
+            animation-delay: -2s;
+        }
+
+        .page-title > span:nth-of-type(3) {
+            animation-delay: -8s;
+        }
+
+        .page-title > span:nth-of-type(4) {
+            animation-delay: -4s;
+        }
+
+        .page-title > span:nth-of-type(5) {
+            animation-delay: -9s;
+        }
+
+        .page-title > span:nth-of-type(6) {
+            animation-delay: -3s;
+        }
+
+        .page-title > span:nth-of-type(7) {
+            animation-delay: -2s;
+        }
+
+        .page-title > span:nth-of-type(8) {
+            animation-delay: -8s;
+        }
+
+        .page-title > span:nth-of-type(9) {
+            animation-delay: -4s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <label
+            for="light-mode-toggle"
+            class="light-mode-toggle hidden"
+            aria-hidden="true"
+        >
+            <input
+                id="light-mode-toggle"
+                type="checkbox"
+            >
+            Light mode
+        </label>
+        <a href="/">
+            <h1 class="page-title">
+                <span><span>m</span></span><span><span>i</span></span><span><span>n</span></span><span><span>k</span></span><span><span>y</span></span><span><span>.</span></span><span><span>z</span></span><span><span>o</span></span><span><span>n</span></span><span><span>e</span></span>
+            </h1>
+        </a>
+    </header>
+</body>
+</html>
