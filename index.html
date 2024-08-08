@@ -57,11 +57,10 @@
             --contrast-color-transparent-dark: rgba(34, 29, 38, 0.1);
             --contrast-color-transparent-light: rgba(238, 233, 240, 0.1);
 
-            --palette-color-1: #809bce;
+            --palette-color-1: #eac4d5;
             --palette-color-2: #95b8d1;
             --palette-color-3: #b8e0d4;
             --palette-color-4: #d6eadf;
-            --palette-color-5: #eac4d5;
         }
     </style>
     <style>
@@ -95,7 +94,7 @@
             margin: 0;
             width: 100%;
             min-height: 100dvh;
-            font-family: 'Verdana', 'Helvetica', 'Arial', 'sans-serif';
+            font-family: Helvetica, sans-serif;
         }
 
         body {
@@ -119,7 +118,7 @@
 
         .light-mode-toggle {
             position: absolute;
-            top: 16px;
+            bottom: 16px;
             right: 16px;
         }
 
@@ -128,74 +127,87 @@
         }
 
         .page-title {
+            --font-size: clamp(15vmin, 15vw, 200px);
+            --background-image:
+                radial-gradient(at calc(var(--font-size) * 1) calc(var(--font-size) * 0.2), var(--palette-color-2) 0px, transparent 50%),
+                radial-gradient(at calc(var(--font-size) * 3) calc(var(--font-size) * 1.5), var(--palette-color-3) 0px, transparent 50%),
+                radial-gradient(at calc(var(--font-size) * 6) calc(var(--font-size) * 0.4), var(--palette-color-4) 0px, transparent 50%);
             margin: 0;
-            font-family: 'Noto Sans', 'Arial Bold', 'sans-serif';
+            font-family: Noto Sans, Arial Black, Arial Rounded MT Bold, Futura, sans-serif;
             font-weight: 900;
-            font-size: clamp(15vmin, 15vw, 200px);
-            background-color: var(--palette-color-5);
-            background-image:
-                radial-gradient(at 40% 60%, var(--palette-color-1) 0px, transparent 50%),
-                radial-gradient(at 36.0% 42.0%, var(--palette-color-2) 0px, transparent 50%),
-                radial-gradient(at 6.0% 15.0%, var(--palette-color-3) 0px, transparent 50%),
-                radial-gradient(at 70.0% 20.0%, var(--palette-color-4) 0px, transparent 50%);
+            font-size: var(--font-size);
             color: transparent;
-            background-clip: text;
-            display: flex;
-            filter: drop-shadow(0 0 16px var(--shadow-color));
-            transition: filter 300ms;
             padding: 16px;
         }
 
         .page-title > span {
             display: inline-block;
             animation: balloon-letter 7s ease-in-out infinite both alternate;
+            background-color: var(--palette-color-1);;
+            background-image: var(--background-image);
+            background-size: calc(var(--font-size) * 10) calc(var(--font-size) * 2);
+            background-attachment: fixed;
+            background-clip: text;
+            filter: drop-shadow(0 0 16px var(--shadow-color));
+            transition: filter 300ms;
         }
 
-        .page-title > span > span {
-            display: block;
-            transition: transform 500ms;
-            transition-timing-function: ease-out;
-        }
-
-        .page-title > span:hover > span {
-            transform: scale(1.1);
+        .page-title > span:nth-of-type(1) {
+            background-position: 0 0;
         }
 
         .page-title > span:nth-of-type(2) {
             animation-delay: -2s;
+            background-position: calc(var(--font-size) * -1) 0;
         }
 
         .page-title > span:nth-of-type(3) {
             animation-delay: -8s;
+            background-position: calc(var(--font-size) * -2) 0;
         }
 
         .page-title > span:nth-of-type(4) {
             animation-delay: -4s;
+            background-position: calc(var(--font-size) * -3) 0;
         }
 
         .page-title > span:nth-of-type(5) {
             animation-delay: -9s;
+            background-position: calc(var(--font-size) * -4) 0;
         }
 
         .page-title > span:nth-of-type(6) {
             animation-delay: -3s;
+            background-position: calc(var(--font-size) * -5) 0;
         }
 
         .page-title > span:nth-of-type(7) {
             animation-delay: -2s;
+            background-position: calc(var(--font-size) * -6) 0;
         }
 
         .page-title > span:nth-of-type(8) {
             animation-delay: -8s;
+            background-position: calc(var(--font-size) * -7) 0;
         }
 
         .page-title > span:nth-of-type(9) {
             animation-delay: -4s;
+            background-position: calc(var(--font-size) * -8) 0;
+        }
+
+        .page-title > span:nth-of-type(10) {
+            background-position: calc(var(--font-size) * -9) 0;
         }
     </style>
 </head>
 <body>
     <header>
+        <a href="/">
+            <h1 class="page-title">
+                <span>m</span><span>i</span><span>n</span><span>k</span><span>y</span><span>.</span><span>z</span><span>o</span><span>n</span><span>e</span>
+            </h1>
+        </a>
         <label
             for="light-mode-toggle"
             class="light-mode-toggle hidden"
@@ -207,11 +219,6 @@
             >
             Light mode
         </label>
-        <a href="/">
-            <h1 class="page-title">
-                <span><span>m</span></span><span><span>i</span></span><span><span>n</span></span><span><span>k</span></span><span><span>y</span></span><span><span>.</span></span><span><span>z</span></span><span><span>o</span></span><span><span>n</span></span><span><span>e</span></span>
-            </h1>
-        </a>
     </header>
 </body>
 </html>
