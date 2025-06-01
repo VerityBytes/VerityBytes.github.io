@@ -1,0 +1,219 @@
+body {
+    background: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ff-border {
+    border-width: 8px;
+    border-style: solid;
+    border-image: url('./battle.png') 8 stretch;
+}
+
+.battle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.enemy-list {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.enemy-row {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.enemy-name-and-count {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    color: rgb(190, 190, 190);
+}
+
+.enemy-name {
+    font-size: 17px;
+    font-weight: bolder;
+    color: white;
+}
+
+.enemy-portrait {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.battleFormationBorder {
+    width: min-content;
+    height: min-content;
+    border-bottom: none;
+}
+
+.battleFormationGridBackground {
+    width: 112px;
+    height: 96px;
+    display: flex;
+}
+
+.battleFormationGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 16px);
+    grid-template-rows: repeat(6, 16px);
+}
+
+.battleFormationGrid > * {
+    color: white;
+    font-size: 10px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    white-space: wrap;
+    line-break: anywhere;
+}
+
+.formation-possibility-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.s0 {
+    grid-area: s0;
+}
+
+.s1 {
+    grid-area: s1;
+}
+
+.s2 {
+    grid-area: s2;
+}
+
+.s3 {
+    grid-area: s3;
+}
+
+.s4 {
+    grid-area: s4;
+}
+
+.s5 {
+    grid-area: s5;
+}
+
+.s6 {
+    grid-area: s6;
+}
+
+.s7 {
+    grid-area: s7;
+}
+
+.s8 {
+    grid-area: s8;
+}
+
+.l0 {
+    grid-area: l0;
+}
+
+.l1 {
+    grid-area: l1;
+}
+
+.l2 {
+    grid-area: l2;
+}
+
+.l3 {
+    grid-area: l3;
+}
+
+.f0 {
+    grid-area: f0;
+}
+
+.c0 {
+    grid-area: c0;
+}
+
+.battleFormationGrid.small {
+    grid-template-areas:
+        's1 s1 s4 s4 s7 s7 .'
+        's1 s1 s4 s4 s7 s7 .'
+        's0 s0 s3 s3 s6 s6 .'
+        's0 s0 s3 s3 s6 s6 .'
+        's2 s2 s5 s5 s8 s8 .'
+        's2 s2 s5 s5 s8 s8 .';
+}
+
+.battleFormationGrid.large {
+    grid-template-areas:
+        'l0 l0 l0 . l2 l2 l2'
+        'l0 l0 l0 . l2 l2 l2'
+        'l0 l0 l0 . l2 l2 l2'
+        'l1 l1 l1 . l3 l3 l3'
+        'l1 l1 l1 . l3 l3 l3'
+        'l1 l1 l1 . l3 l3 l3';
+}
+
+.battleFormationGrid.mixed {
+    grid-template-areas:
+        'l0 l0 l0 s1 s1 s4 s4'
+        'l0 l0 l0 s1 s1 s4 s4'
+        'l0 l0 l0 s0 s0 s3 s3'
+        'l1 l1 l1 s0 s0 s3 s3'
+        'l1 l1 l1 s2 s2 s5 s5'
+        'l1 l1 l1 s2 s2 s5 s5';
+}
+
+.battleFormationGrid.fiend {
+    grid-template-areas:
+        '. . . . . . .'
+        '. f0 f0 f0 f0 . .'
+        '. f0 f0 f0 f0 . .'
+        '. f0 f0 f0 f0 . .'
+        '. f0 f0 f0 f0 . .'
+        '. . . . . . .';
+}
+
+.battleFormationGrid.chaos {
+    grid-template-areas:
+        'c0 c0 c0 c0 c0 c0 c0'
+        'c0 c0 c0 c0 c0 c0 c0'
+        'c0 c0 c0 c0 c0 c0 c0'
+        'c0 c0 c0 c0 c0 c0 c0'
+        'c0 c0 c0 c0 c0 c0 c0'
+        'c0 c0 c0 c0 c0 c0 c0';
+}
+
+.battle-background {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    height: 32px;
+}
