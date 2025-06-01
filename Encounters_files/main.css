@@ -29,14 +29,21 @@ h2 {
 
 .enemy-list {
     padding: 8px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .enemy-row {
     display: flex;
     gap: 8px;
     align-items: flex-end;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-grow: 1;
+    min-width: 200px;
+    max-width: 25%;
 }
 
 .enemy-name-and-count {
